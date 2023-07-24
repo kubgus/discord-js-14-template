@@ -44,3 +44,9 @@ then run in debug mode:
 npm run dev
 ```
 Your code will be automatically reloaded with [*nodemon*](https://www.npmjs.com/package/nodemon).
+
+## Common issues
+### Installation
+- If you run into any errors during installation, remove the `package-lock.json` file and try again.
+### Commands
+- Make sure to always set the description of a `new SlashCommandBuilder()` with the `setDescription()` method.
