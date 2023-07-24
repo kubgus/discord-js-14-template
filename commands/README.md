@@ -1,4 +1,4 @@
-# Custom commands
+# 🔵 Custom commands
 
 - [Wiki](https://discordjs.guide/slash-commands/advanced-creation.html)
   
