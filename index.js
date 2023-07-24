@@ -85,7 +85,7 @@ client.on(Events.InteractionCreate, async i => {
 
         if (now < expirationTime) {
             const expiredTimestamp = Math.round(expirationTime / 1000);
-            return i.reply({ content: `You can use this command again <t:${expiredTimestamp}:R>.`, ephemeral: true });
+            return i.reply({ content: `You can use this command again <t:${expiredTimestamp}:R>. 🕐`, ephemeral: true });
         }
     }
 
@@ -96,11 +96,15 @@ client.on(Events.InteractionCreate, async i => {
         await command.execute(i, client);
         console.log(`📥 @${i.member.displayName} executed ${i.commandName}.`)
     } catch (error) {
-        console.error(error);
+        console.error(`🌋 Error ${error.rawError.code} occurred while executing ${i.commandName}: ${error.rawError.message}.`);
+        const message = {
+            content: `${error.rawError.message}. 🌋`,
+            ephemeral: true
+        };
         if (i.replied || i.deferred) {
-            await i.followUp({ content: "There was an error while executing this command! 🌋", ephemeral: true });
+            await i.followUp(message);
         } else {
-            await i.reply({ content: "There was an error while executing this command! 🌋", ephemeral: true });
+            await i.reply(message);
         }
     }
 });
