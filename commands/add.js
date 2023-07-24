@@ -8,4 +8,5 @@ module.exports = {
     execute: async (interaction) => {
         await interaction.reply(`The sum is ${interaction.options.getInteger("num1") + interaction.options.getInteger("num2")}.`);
     },
+    public: true,
 }
