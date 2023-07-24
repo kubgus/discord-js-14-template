@@ -14,10 +14,12 @@ const path = require("path");
 
 // All intents are enabled by default.
 // This is fine for development, but consider only enabling the intents you actually need in production.
+// https://discord.com/developers/docs/topics/gateway#gateway-intents
+const intents = Object.keys(GatewayIntentBits).map((a) => {
+    return GatewayIntentBits[a]
+});
 const client = new Client({
-    intents: Object.keys(GatewayIntentBits).map((a) => {
-        return GatewayIntentBits[a]
-    }),
+    intents, ws: { intents }
 });
 const rest = new REST().setToken(token);
 
@@ -96,16 +98,18 @@ client.on(Events.InteractionCreate, async i => {
         await command.execute(i, client);
         console.log(`📥 @${i.member.displayName} executed ${i.commandName}.`)
     } catch (error) {
-        console.error(`🌋 Error ${error.rawError.code} occurred while executing ${i.commandName}: ${error.rawError.message}.`);
-        const message = {
-            content: `${error.rawError.message}. 🌋`,
-            ephemeral: true
-        };
-        if (i.replied || i.deferred) {
-            await i.followUp(message);
-        } else {
-            await i.reply(message);
-        }
+        try {
+            console.error(`🌋 Error ${error.rawError.code} occurred while executing ${i.commandName}: ${error.rawError.message}.`);
+            const message = {
+                content: `${error.rawError.message}. 🌋`,
+                ephemeral: true
+            };
+            if (i.replied || i.deferred) {
+                await i.followUp(message);
+            } else {
+                await i.reply(message);
+            }
+        } catch { console.log(error); }
     }
 });
 
