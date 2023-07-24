@@ -25,7 +25,7 @@ readDirectory("./commands").forEach(file => {
     const debugCommands = [...client.commands.values()].filter(command => !command.public).map(command => command.data.toJSON());
     const commands = [...client.commands.values()].filter(command => command.public).map(command => command.data.toJSON());
     try {
-        console.log(`🔃 Refreshing ${commands.length} application (/) commands...`);
+        console.log(`🔃 Refreshing ${debugCommands.length + commands.length} application (/) commands...`);
         const debugData = await rest.put(
             Routes.applicationGuildCommands(clientId, debugGuild),
             { body: debugCommands },
