@@ -10,8 +10,15 @@ const readDirectory = require("./util/read-directory");
 const registerCommand = require("./util/register-command");
 
 const { Client, Collection, Events, GatewayIntentBits, REST, Routes } = require("discord.js");
+const path = require("path");
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages] });
+// All intents are enabled by default.
+// This is fine for development, but consider only enabling the intents you actually need in production.
+const client = new Client({
+    intents: Object.keys(GatewayIntentBits).map((a) => {
+        return GatewayIntentBits[a]
+    }),
+});
 const rest = new REST().setToken(token);
 
 client.commands = new Collection();
@@ -21,11 +28,18 @@ readDirectory("./commands").forEach(file => {
     console.log(`🔵 Registered command ${command.data.name}.`);
 });
 
+readDirectory("./events").forEach(file => {
+    const name = path.basename(file, ".js");
+    const execute = require(file);
+    client.on(name, async (...args) => execute(...args, client));
+    console.log(`🟠 Registered event ${name}.`);
+});
+
 (async () => {
     const debugCommands = [...client.commands.values()].filter(command => !command.public).map(command => command.data.toJSON());
     const commands = [...client.commands.values()].filter(command => command.public).map(command => command.data.toJSON());
     try {
-        console.log(`🔃 Refreshing ${debugCommands.length + commands.length} application (/) commands...`);
+        //console.log(`🔄️ Syncing ${debugCommands.length + commands.length} application (/) commands...`);
         const debugData = await rest.put(
             Routes.applicationGuildCommands(clientId, debugGuild),
             { body: debugCommands },
@@ -34,7 +48,7 @@ readDirectory("./commands").forEach(file => {
             Routes.applicationCommands(clientId, debugGuild),
             { body: commands },
         );
-        console.log(`✨ Reloaded ${debugData.length} debug and ${data.length} public application (/) commands.`);
+        console.log(`✨ Synced ${debugData.length} debug and ${data.length} public application (/) commands.`);
     } catch (error) {
         console.error(error);
     }
@@ -79,7 +93,7 @@ client.on(Events.InteractionCreate, async i => {
     setTimeout(() => timestamps.delete(i.user.id), cooldownAmount);
 
     try {
-        await command.execute(i);
+        await command.execute(i, client);
         console.log(`📥 @${i.member.displayName} executed ${i.commandName}.`)
     } catch (error) {
         console.error(error);
