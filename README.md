@@ -20,6 +20,10 @@ npm run dev
 ```
 Your code will be automatically reloaded with [*nodemon*](https://www.npmjs.com/package/nodemon).
 
+## Add custom content
+- [Custom commands](https://github.com/kubgus/discord-js-14-template/blob/master/commands/README.md)
+- [Custom events](https://github.com/kubgus/discord-js-14-template/blob/master/events/README.md)
+
 ## Common issues
 ### Installation
 - If you run into any errors during installation, remove the `package-lock.json` file and try again.
