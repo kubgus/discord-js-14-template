@@ -37,6 +37,7 @@ readDirectory("./events").forEach(file => {
     console.log(`🟠 Registered event ${name}.`);
 });
 
+// TODO: Add support for guilds property which specifies the scope of the command.
 (async () => {
     const debugCommands = [...client.commands.values()].filter(command => !command.public).map(command => command.data.toJSON());
     const commands = [...client.commands.values()].filter(command => command.public).map(command => command.data.toJSON());
@@ -47,7 +48,7 @@ readDirectory("./events").forEach(file => {
             { body: debugCommands },
         );
         const data = await rest.put(
-            Routes.applicationCommands(clientId, debugGuild),
+            Routes.applicationCommands(clientId),
             { body: commands },
         );
         console.log(`✨ Synced ${debugData.length} debug and ${data.length} public application (/) commands.`);
