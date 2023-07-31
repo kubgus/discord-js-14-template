@@ -38,18 +38,16 @@ module.exports = {
             await command.execute(interaction, client);
             console.log(`📥 @${interaction.member.displayName} executed ${interaction.commandName}.`)
         } catch (error) {
-            try {
-                console.error(`🌋 Error occurred while executing command ${interaction.commandName}: ${error}.`);
-                const message = {
-                    content: `${error.rawError.message}. 🌋`,
-                    ephemeral: true
-                };
-                if (interaction.replied || interaction.deferred) {
-                    await interaction.followUp(message);
-                } else {
-                    await interaction.reply(message);
-                }
-            } catch { console.error(`🌋 Could not properly handle an error on command ${interaction.commandName}: ${error}.`); }
+            console.error(`🌋 Error occurred while executing command ${interaction.commandName}: ${error}.`);
+            const message = {
+                content: `${error.rawError.message}. 🌋`,
+                ephemeral: true
+            };
+            if (interaction.replied || interaction.deferred) {
+                await interaction.followUp(message);
+            } else {
+                await interaction.reply(message);
+            }
         }
     }
 }
