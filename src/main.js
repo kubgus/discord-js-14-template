@@ -29,7 +29,7 @@ client.once("ready", () => {
     readDirectory("./src/functions").forEach(file => {
         const name = path.basename(file, ".js");
         try {
-            console.log(`🟢 Executing function ${name}.`);
+            console.log(`🟢 Executing the ${name} function.`);
             require(path.toNamespacedPath(file))(client);
         } catch (error) {
             console.error(`🌋 Error occurred while executing function ${name}: ${error}.`);

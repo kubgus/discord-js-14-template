@@ -2,7 +2,7 @@
 
 This repository contains a default project that covers all of the necessary boilerplate code to get your bot up and running instantly with custom commands and more...
 
-## Environment variables
+## Environment variables 🔗
 Create a `.env` file in your root directory:
 ```env
 # Token from the Discord Developer Portal
@@ -12,7 +12,7 @@ DISCORD_TOKEN=your_token
 DEBUG_GUILD=guild_id
 ```
 
-## Start developing
+## Start developing 🏁
 To debug your bot, install all the dependencies with:
 ```
 npm i
@@ -23,12 +23,9 @@ npm run dev
 ```
 Your code will be automatically reloaded with [*nodemon*](https://www.npmjs.com/package/nodemon).
 
-## Add custom content
-- [Custom commands](https://github.com/kubgus/discord-js-14-template/blob/master/commands/README.md)
-- [Custom events](https://github.com/kubgus/discord-js-14-template/blob/master/events/README.md)
+## Add custom content ⚒️
+Look in the **[src](https://github.com/kubgus/discord-js-14-template/tree/master/src/README.md)** folder for more info!
 
-## Common issues
+## Common issues 🌋
 ### Installation
 - If you run into any errors during installation, remove the `package-lock.json` file and try again.
-### Commands
-- Make sure to always set the description of a `new SlashCommandBuilder()` with the `setDescription()` method.
