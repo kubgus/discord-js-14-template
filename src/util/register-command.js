@@ -1,4 +1,4 @@
-const { Client, SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder } = require("discord.js");
 const path = require("path");
 
 module.exports = (file) => {
@@ -10,7 +10,7 @@ module.exports = (file) => {
         execute,
         cooldown = 0,
         public = false, // Determines whether the command can be used outside of the debug guild
-    } = require(`../${file}`);
+    } = require(path.toNamespacedPath(`${file}`));
 
     data.setName(name);
 

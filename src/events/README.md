@@ -4,14 +4,17 @@
 
 To add a custom event, create a new Javascript file in the `events/` folder:
 ```js
-module.exports = (message, client) => {
-    console.log(message.content);
+module.exports = {
+    execute: async (message, client) => {
+        console.log(message.content);
+    }
 }
 ```
 The name of the file must correspond with the event identifier. For instance, the above file is named `messageCreate.js`.
 
 ## What you need to know
-1. The `message` argument in the above code corresponds with `...args`, which means there can be any amount of arguments before the client is passed.
+1. The `message` argument in the example `execute()` method corresponds with `...args`, which means there can be any amount of arguments before the client is passed depending on the event type.
+1. If you only want the `execute()` method to run once, add the `once: true` property to your `module.exports`.
 
 ## All events
 ```

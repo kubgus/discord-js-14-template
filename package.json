@@ -2,9 +2,9 @@
   "name": "discord-bot-template",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/main.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon ."
   },
   "author": "Jakub Gustafik",
   "license": "MIT",

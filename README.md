@@ -7,8 +7,6 @@ Create a `.env` file in your root directory:
 ```env
 # Token from the Discord Developer Portal
 DISCORD_TOKEN=your_token
-# ID of your bot
-CLIENT_ID=bot_id
 # ID of the guild (server) you want to test your commands in
 # Add a `public: true` property to your command to make it availible outside of your debug guild
 DEBUG_GUILD=guild_id
