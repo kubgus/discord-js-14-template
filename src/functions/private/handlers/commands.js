@@ -4,8 +4,8 @@ const debugGuild = process.env.DEBUG_GUILD;
 
 const { REST, Routes } = require("discord.js");
 
-const readDirectory = require("../../util/read-directory");
-const registerCommand = require("../../util/register-command");
+const readDirectory = require("../../../util/read-directory");
+const registerCommand = require("../../../util/register-command");
 
 module.exports = (client) => {
     const rest = new REST().setToken(token);

@@ -1,6 +1,6 @@
 const path = require("path");
 
-const readDirectory = require("../../util/read-directory");
+const readDirectory = require("../../../util/read-directory");
 
 module.exports = (client) => {
     readDirectory("./src/events").forEach(file => {
