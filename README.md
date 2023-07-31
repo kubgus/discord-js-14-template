@@ -2,6 +2,10 @@
 
 This repository contains a default project that covers all of the necessary boilerplate code to get your bot up and running instantly with custom commands and more...
 
+- [Discord.js Docs](https://old.discordjs.dev/#/docs/discord.js/14.11.0/general/welcome)
+- [Discord.js Guide](https://discordjs.guide/)
+- [Discord.js Github](https://github.com/discordjs)
+
 ## Environment variables 🔗
 Create a `.env` file in your root directory:
 ```env
