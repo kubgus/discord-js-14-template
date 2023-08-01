@@ -25,8 +25,9 @@ The file name should be the same as the schema name.
 ## Using schemas
 Find and create documents:
 ```js
-const Tutorial = require("../../schemas/tutorial");
 const { Types } = require("mongoose");
+
+const Tutorial = require("../schemas/tutorial");
 
 // ...
 
@@ -44,18 +45,18 @@ if (!document) {
 ```
 Modify documents:
 ```js
-const Tutorial = require("../../schemas/tutorial");
+const Tutorial = require("../schemas/tutorial");
 
 // ...
 
 await Tutorial.findOneAndUpdate(
     { age: 20 }, // findOne
     { reminder: "This document has the age property set to 20." } // AndUpdate
-)
+);
 ```
 You can also modify documents based on their `_id`:
 ```js
-const Tutorial = require("../../schemas/tutorial");
+const Tutorial = require("../schemas/tutorial");
 
 // ...
 
@@ -67,6 +68,6 @@ const document = await Tutorial.findOne({ age: 20 });
 await Tutorial.findOneAndUpdate(
     {_id: document._id}, // findOne
     { reminder: "This will modify the same document as the previous code." } // AndUpdate
-)
+);
 ```
 > ***Note:*** Every document has an `_id` property.

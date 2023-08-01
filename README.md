@@ -12,7 +12,7 @@ Create a `.env` file in your root directory:
 ```env
 # Token from the Discord Developer Portal
 DISCORD_TOKEN=your_token
-# URI of your MongoDB Atlas Database
+# Connection string of your MongoDB Atlas Database (same as VSCode connection string)
 # This can be left empty if you don't want to use MongoDB or you can clone the alpha branch for minimal features
 # Get your account here: https://www.mongodb.com/
 MONGO_URI=your_uri
@@ -51,3 +51,6 @@ Look in the **[src](https://github.com/kubgus/discord-js-14-template/tree/master
 ### ValidationError: Expected a string primitive
 - This error can occur for a variety of reasons, but it's most likely that one or more of your commands' SlashCommandBuilders are missing a description.
 - Make sure to always set the description of a `new SlashCommandBuilder()` with the `setDescription()` method.
+### User "tried to execute" command
+- This issue occurs, when a command doesn't return a value.
+- Fix this by returning `true`, or (ideally) return `await interaction.reply()` or any other value.
