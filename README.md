@@ -12,7 +12,7 @@ Create a `.env` file in your root directory:
 ```env
 # Token from the Discord Developer Portal
 DISCORD_TOKEN=your_token
-# URI of your MongoDB Atlas Database
+# Connection string of your MongoDB Atlas Database (same as VSCode connection string)
 # This can be left empty if you don't want to use MongoDB or you can clone the alpha branch for minimal features
 # Get your account here: https://www.mongodb.com/
 MONGO_URI=your_uri
