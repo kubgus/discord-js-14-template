@@ -21,3 +21,52 @@ The file name should be the same as the schema name.
 1. The first argument of the `model()` method takes in its name.
 1. The second argument of the `model()` method takes in the schema.
 1. The third argument of the `model()` method takes in the name of the collection where your data will be stored.
+
+## Using schemas
+Find and create documents:
+```js
+const Tutorial = require("../../schemas/tutorial");
+const { Types } = require("mongoose");
+
+// ...
+
+let document = await Tutorial.findOne({ name: "Example Tutorial" }); // Find document based on a property
+
+if (!document) {
+    // Create a new document based on the Tutorial schema if it doesn't already exist
+    document = await new Tutorial({
+        _id: new Types.ObjectId(),
+        name: "Example Tutorial",
+        age: 20,
+        reminder: "This creates a new document."
+    }).save();
+}
+```
+Modify documents:
+```js
+const Tutorial = require("../../schemas/tutorial");
+
+// ...
+
+await Tutorial.findOneAndUpdate(
+    { age: 20 }, // findOne
+    { reminder: "This document has the age property set to 20." } // AndUpdate
+)
+```
+You can also modify documents based on their `_id`:
+```js
+const Tutorial = require("../../schemas/tutorial");
+
+// ...
+
+const document = await Tutorial.findOne({ age: 20 });
+
+// Now you have access to the document.
+// You can, for example, check if it exists before modification.
+
+await Tutorial.findOneAndUpdate(
+    {_id: document._id}, // findOne
+    { reminder: "This will modify the same document as the previous code." } // AndUpdate
+)
+```
+> ***Note:*** Every document has an `_id` property.
