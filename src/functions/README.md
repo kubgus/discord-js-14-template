@@ -5,7 +5,7 @@
 To add a custom function, create a new Javascript file in the `functions/` folder:
 ```js
 module.exports = (client) => {
-    console.log("This example function runs once the client is ready. It can utilize the client.");
+    console.log("This example function runs at the start of execution. It can utilize the client.");
 }
 ```
 The function name is not important and only serves for debug purposes.
