@@ -72,3 +72,18 @@ await Tutorial.findOneAndUpdate(
 );
 ```
 > ***Note:*** Every document has an `_id` property.
+
+## Storing Discord users
+Storing Discord users is different to storing other data. Since each Discord user ID is unique, we can use it as the primary `_id` for the schema:
+```js
+// ...
+const exampleUserSchema = new Schema({
+    _id: String, // Discord user ID
+    balance: Number,
+// ...
+```
+Searching for users then becomes much easier:
+```js
+const document = await User.findOne({ _id: user.id });
+```
+> ***Note:*** This approach is not necessary, but greatly recommended.
