@@ -51,3 +51,6 @@ Look in the **[src](https://github.com/kubgus/discord-js-14-template/tree/master
 ### ValidationError: Expected a string primitive
 - This error can occur for a variety of reasons, but it's most likely that one or more of your commands' SlashCommandBuilders are missing a description.
 - Make sure to always set the description of a `new SlashCommandBuilder()` with the `setDescription()` method.
+### User "tried to execute" command
+- This issue occurs, when a command doesn't return a value.
+- Fix this by returning `true`, or (ideally) return `await interaction.reply()` or any other value.
