@@ -40,3 +40,14 @@ Look in the **[src](https://github.com/kubgus/discord-js-14-template/tree/master
 - If you run into any errors during installation, remove the `package-lock.json` file and try again.
 ### MongoDB
 - If you don't want to use MongoDB and leave the config empty, you will receive an error which you can ignore.
+### DiscordAPIError[50001]: Missing Access
+- This error usually means that your bot doesn't have access to your debug guild. (see "Environment variables")
+- Use [this link](https://discord.com/developers/applications/oauth2/url-generator) to add your bot to your debug guild. (server)
+### Error: Used disallowed intents
+- This error occurs when your bot's "Privileged Gateway Intents" in the Discord Developer Portal don't match the intents specified in your `src/main.js` file.
+- To resolve this error, you have to either:
+  - Enable all privileged gateway intents in your Discord Developer Portal.
+  - Or only enable intents that the bot actually uses in the `src/main.js` file.
+### ValidationError: Expected a string primitive
+- This error can occur for a variety of reasons, but it's most likely that one or more of your commands' SlashCommandBuilders are missing a description.
+- Make sure to always set the description of a `new SlashCommandBuilder()` with the `setDescription()` method.
