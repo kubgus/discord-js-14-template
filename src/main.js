@@ -27,7 +27,7 @@ readDirectory("./src/functions").forEach(file => {
     const name = path.basename(file, ".js");
     try {
         console.log(`🟢 Loading the ${name} function.`);
-        require(path.toNamespacedPath(file))(client);
+        require(path.resolve(file))(client);
     } catch (error) {
         console.error(`🌋 Error occurred while executing function ${name}: ${error}.`);
     }

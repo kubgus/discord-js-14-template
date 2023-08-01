@@ -9,7 +9,7 @@ module.exports = (client) => {
             const name = path.basename(file, ".js");
             const directoryName = path.basename(path.dirname(file));
 
-            const event = require(path.toNamespacedPath(file));
+            const event = require(path.resolve(file));
             switch (directoryName) {
                 case "db":
                 case "database":

@@ -10,7 +10,7 @@ module.exports = (file) => {
         execute,
         cooldown = 0,
         public = false, // Determines whether the command can be used outside of the debug guild
-    } = require(path.toNamespacedPath(`${file}`));
+    } = require(path.resolve(`${file}`));
 
     data.setName(name);
 
