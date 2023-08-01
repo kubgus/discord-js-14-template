@@ -6,6 +6,7 @@ This repository contains a default project that covers all of the necessary boil
 - [Discord.js Guide](https://discordjs.guide/)
 - [Discord.js Github](https://github.com/discordjs)
 - [MongoDB](https://www.mongodb.com/)
+- [Mongoose](https://mongoosejs.com/docs/guide.html)
 
 ## Environment variables 🔗
 Create a `.env` file in your root directory:
