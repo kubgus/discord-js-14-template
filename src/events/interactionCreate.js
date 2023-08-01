@@ -1,53 +1,49 @@
-const { Collection } = require('discord.js');
+const { Collection, InteractionType } = require('discord.js');
 
+// WARNING: This file is essential to the bot's functionality. Do not modify it unless you know what you're doing.
+
+// Handles all interactions
 module.exports = {
     execute: async (interaction, client) => {
-        if (!interaction.isChatInputCommand()) return;
-
-        const command = interaction.client.commands.get(interaction.commandName);
-
-        if (!command) {
-            console.error(`🌋 No command matching ${interaction.commandName} was found.`);
-            return;
-        }
-
-        const { cooldowns } = client;
-
-        if (!cooldowns.has(command.data.name)) {
-            cooldowns.set(command.data.name, new Collection());
-        }
-
-        const now = Date.now();
-        const timestamps = cooldowns.get(command.data.name);
-        const defaultCooldownDuration = 0;
-        const cooldownAmount = (command.cooldown ?? defaultCooldownDuration) * 1000;
-
-        if (timestamps.has(interaction.user.id)) {
-            const expirationTime = timestamps.get(interaction.user.id) + cooldownAmount;
-
-            if (now < expirationTime) {
-                const expiredTimestamp = Math.round(expirationTime / 1000);
-                return interaction.reply({ content: `You can use this command again <t:${expiredTimestamp}:R>. 🕐`, ephemeral: true });
+        if (interaction.isChatInputCommand()) { // Handles slash commands
+            const slashCommand = interaction.client.commands.get(interaction.commandName);
+            if (!slashCommand) {
+                console.error(`🌋 No slash command matching ${interaction.commandName} was found.`);
+                return;
             }
-        }
 
-        timestamps.set(interaction.user.id, now);
-        setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
-
-        try {
-            await command.execute(interaction, client);
-            console.log(`📥 @${interaction.member.displayName} executed ${interaction.commandName}.`)
-        } catch (error) {
-            console.error(`🌋 Error occurred while executing command ${interaction.commandName}: ${error}.`);
-            const message = {
-                content: `${error.rawError.message}. 🌋`,
-                ephemeral: true
-            };
-            if (interaction.replied || interaction.deferred) {
-                await interaction.followUp(message);
-            } else {
-                await interaction.reply(message);
+            const { cooldowns } = client;
+            const now = Date.now();
+            if (!cooldowns.has(slashCommand.data.name)) cooldowns.set(slashCommand.data.name, new Collection());
+            const timestamps = cooldowns.get(slashCommand.data.name);
+            const cooldownAmount = (slashCommand.cooldown ?? 0) * 1000;
+            if (timestamps.has(interaction.user.id)) {
+                const expirationTime = timestamps.get(interaction.user.id) + cooldownAmount;
+                if (now < expirationTime) return interaction.reply(
+                    { content: `You can use this command again <t:${Math.round(expirationTime / 1000)}:R>. 🕐`, ephemeral: true }
+                );
             }
+            timestamps.set(interaction.user.id, now);
+            setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
+
+            try {
+                const success = await command.execute(interaction, client);
+
+                if (!success) console.log(`📥 @${interaction.member.displayName} tried to execute ${interaction.commandName}.`);
+                else {
+                    timestamps.set(interaction.user.id, now);
+                    setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
+
+                    console.log(`📥 @${interaction.member.displayName} executed ${interaction.commandName}.`)
+                }
+            } catch (error) {
+                console.error(`🌋 Error occurred while executing command ${interaction.commandName}: ${error}.`);
+                const message = { content: `This command failed to execute. Please try again later.`, ephemeral: true };
+                if (interaction.replied || interaction.deferred) await interaction.followUp(message);
+                else await interaction.reply(message);
+            } finally { return; }
         }
+
+        console.log(`🌋 Unknown interaction: ${interaction}.`);
     }
 }

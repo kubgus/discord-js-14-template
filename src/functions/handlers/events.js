@@ -3,14 +3,14 @@ const path = require("path");
 
 const readDirectory = require("../../util/read-directory");
 
+// Defines the handleEvents function
 module.exports = (client) => {
+    // Registers all events in the events directory
     client.handleEvents = async () => {
         readDirectory("./src/events").forEach(file => {
             const name = path.basename(file, ".js");
-            const directoryName = path.basename(path.dirname(file));
-
             const event = require(path.resolve(file));
-            switch (directoryName) {
+            switch (path.basename(path.dirname(file))) { // Switches based on the parent directory name
                 case "db":
                 case "database":
                 case "mongo":

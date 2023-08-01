@@ -1,5 +1,3 @@
 module.exports = {
-    execute: () => {
-        console.log("🍃 Connected to MongoDB.");
-    }
+    execute: () => console.log("🍃 Connected to MongoDB.")
 }

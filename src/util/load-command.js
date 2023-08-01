@@ -1,9 +1,9 @@
 const { SlashCommandBuilder } = require("discord.js");
 const path = require("path");
 
+// Returns an object containing the command data, execute function, and cooldown
 module.exports = (file) => {
     const name = path.basename(file, ".js");
-
     const {
         data = new SlashCommandBuilder()
             .setDescription("Press ENTER to execute this command."),

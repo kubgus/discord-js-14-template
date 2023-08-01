@@ -1,5 +1,3 @@
 module.exports = {
-    execute: () => {
-        console.log("🍂 Disconnected from MongoDB.");
-    }
+    execute: () => console.log("🍂 Disconnected from MongoDB.")
 }

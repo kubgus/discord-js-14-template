@@ -1,5 +1,3 @@
 module.exports = {
-    execute: () => {
-        console.log("🍁 MongoDB has encountered an error!");
-    }
+    execute: () => console.log("🍁 MongoDB has encountered an error!")
 }
