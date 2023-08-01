@@ -52,7 +52,7 @@ const Tutorial = require("../schemas/tutorial");
 await Tutorial.findOneAndUpdate(
     { age: 20 }, // findOne
     { reminder: "This document has the age property set to 20." } // AndUpdate
-)
+);
 ```
 You can also modify documents based on their `_id`:
 ```js
@@ -68,6 +68,6 @@ const document = await Tutorial.findOne({ age: 20 });
 await Tutorial.findOneAndUpdate(
     {_id: document._id}, // findOne
     { reminder: "This will modify the same document as the previous code." } // AndUpdate
-)
+);
 ```
 > ***Note:*** Every document has an `_id` property.
