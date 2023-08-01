@@ -4,8 +4,9 @@
 
 To add a new schema, create a new Javascript file in the `schemas/` folder:
 ```js
-const { Schema, model } = require('mongoose');
+const { Schema, model, models } = require('mongoose');
 
+const modelName = "Tutorial";
 const tutorialSchema = new Schema({
     _id: Schema.Types.ObjectId,
     name: String,
@@ -13,7 +14,7 @@ const tutorialSchema = new Schema({
     reminder: { type: String, default: "You can always use this as reference or look at the guide." }
 });
 
-module.exports = model("Tutorial", tutorialSchema, "tutorial");
+module.exports = models[modelName] || model(modelName, tutorialSchema, "tutorial");
 ```
 The file name should be the same as the schema name.
 
