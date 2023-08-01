@@ -25,8 +25,9 @@ The file name should be the same as the schema name.
 ## Using schemas
 Find and create documents:
 ```js
-const Tutorial = require("../schemas/tutorial");
 const { Types } = require("mongoose");
+
+const Tutorial = require("../schemas/tutorial");
 
 // ...
 
