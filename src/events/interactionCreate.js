@@ -27,7 +27,7 @@ module.exports = {
             setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
 
             try {
-                const success = await command.execute(interaction, client);
+                const success = await slashCommand.execute(interaction, client);
 
                 if (!success) console.log(`📥 @${interaction.member.displayName} tried to execute ${interaction.commandName}.`);
                 else {
