@@ -1,3 +1,5 @@
+// WARNING: This file is essential to the bot's functionality. Do not modify it unless you know what you're doing.
+
 const { connection } = require("mongoose");
 const path = require("path");
 

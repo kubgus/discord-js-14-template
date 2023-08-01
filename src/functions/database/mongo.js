@@ -1,3 +1,5 @@
+// WARNING: This file is essential to the bot's functionality. Do not modify it unless you know what you're doing.
+
 require("dotenv").config();
 const mongoURI = process.env.MONGO_URI;
 

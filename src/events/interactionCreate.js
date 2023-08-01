@@ -1,6 +1,6 @@
-const { Collection, InteractionType } = require('discord.js');
-
 // WARNING: This file is essential to the bot's functionality. Do not modify it unless you know what you're doing.
+
+const { Collection, InteractionType } = require('discord.js');
 
 // Handles all interactions
 module.exports = {
