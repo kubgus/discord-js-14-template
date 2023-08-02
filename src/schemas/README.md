@@ -62,9 +62,11 @@ const document = await Tutorial.findOne({ age: 20 });
 
 await Tutorial.findOneAndUpdate(
     {_id: document._id}, // findOne
-    { reminder: "This will modify the same document as the previous code." } // AndUpdate
+    { reminder: "This will modify the same document as the previous code." }, // AndUpdate
+    { new: true } // Return the modified document
 );
 ```
+The `new` property determines whether the modified document should be returned or not. If set to `false`, the document before modification will be returned.
 > ***Note:*** Every document has a unique `_id` property by default.
 
 ## Storing Discord users
