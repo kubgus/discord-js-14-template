@@ -7,13 +7,13 @@ To add a new schema, create a new Javascript file in the `schemas/` folder:
 const { Schema, model, models } = require("mongoose");
 const path = require("path");
 
-const tutorialSchema = new Schema({
+const schema = new Schema({
     name: { type: String, required: true },
     age: Number,
     reminder: { type: String, default: "You can always use this as reference or look at the guide." }
 });
 
-module.exports = models[path.basename(__filename, ".js")] || model(path.basename(__filename, ".js"), tutorialSchema);
+module.exports = models[path.basename(__filename, ".js")] || model(path.basename(__filename, ".js"), schema);
 ```
 The file name determines the schema name. In this case, the file name should be `tutorial.js`, which will create a schema called `tutorial`, and a collection called `tutorials`.
 
