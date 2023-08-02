@@ -89,8 +89,8 @@ The recommended way of managing data is to create a new file for each action in 
 const User = require("../schemas/user");
 
 module.exports = (client) => {
-    client.fetchUser = async (filter) => {
-        let document = await User.findOne(filter);
+    client.fetchUser = async (_id) => {
+        let document = await User.findOne({ _id });
 
         // Automatically create a new document if it doesn't exist
         if (!document) {
@@ -107,6 +107,6 @@ module.exports = (client) => {
 ```
 This way, you can easily access the function from anywhere in your code:
 ```js
-const document = await client.fetchUser({ _id: user.id });
+const document = await client.fetchUser(user.id);
 ```
 > ***Warning:*** Some of the above code snippets have not been tested yet, and may not work as intended. Please report any issues you find.
