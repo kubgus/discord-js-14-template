@@ -5,5 +5,8 @@
 - [🟠 Custom events](https://github.com/kubgus/discord-js-14-template/blob/master/src/events/README.md)
 - [🟢 Custom functions](https://github.com/kubgus/discord-js-14-template/tree/master/src/functions/README.md)
 
+## Create your own templates
+- [⚙️ Components](https://github.com/kubgus/discord-js-14-template/blob/master/src/components/README.md)
+
 ## MongoDB
 - [🍃 MongoDB schemas](https://github.com/kubgus/discord-js-14-template/blob/master/src/schemas/README.md)
