@@ -5,7 +5,7 @@ const { Collection, InteractionType } = require('discord.js');
 // Handles all interactions
 module.exports = {
     execute: async (interaction, client) => {
-        if (interaction.isChatInputCommand()) { // Handles slash commands
+        if (interaction.isChatInputCommand()) { // Handles slash commands and cooldowns
             const slashCommand = interaction.client.commands.get(interaction.commandName);
             if (!slashCommand) {
                 console.error(`🌋 No slash command matching ${interaction.commandName} was found.`);
@@ -29,12 +29,12 @@ module.exports = {
             try {
                 const success = await slashCommand.execute(interaction, client);
 
-                if (!success) console.log(`📥 @${interaction.member.displayName} tried to execute ${interaction.commandName}.`);
+                if (!success) console.log(`📥 @${interaction.user.tag} tried to execute ${interaction.commandName}.`);
                 else {
                     timestamps.set(interaction.user.id, now);
                     setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
 
-                    console.log(`📥 @${interaction.member.displayName} executed ${interaction.commandName}.`);
+                    console.log(`📥 @${interaction.user.tag} executed ${interaction.commandName}.`);
                 }
             } catch (error) {
                 console.error(`🌋 Error occurred while executing command ${interaction.commandName}: ${error}.`);
@@ -43,7 +43,11 @@ module.exports = {
                 else await interaction.reply(message);
             } finally { return; }
         }
+        else if (interaction.isButton()) { // Handles button clicks
+            console.log(`📥 @${interaction.user.tag} clicked ${interaction.customId}.`);
+            return;
+        }
 
-        console.log(`🌋 Unknown interaction: ${interaction}.`);
+        console.log(`📥 @${interaction.user.tag} used an unknown interaction: ${interaction.id}.`);
     }
 }
