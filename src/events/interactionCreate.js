@@ -34,7 +34,7 @@ module.exports = {
                     timestamps.set(interaction.user.id, now);
                     setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
 
-                    console.log(`📥 @${interaction.member.displayName} executed ${interaction.commandName}.`)
+                    console.log(`📥 @${interaction.member.displayName} executed ${interaction.commandName}.`);
                 }
             } catch (error) {
                 console.error(`🌋 Error occurred while executing command ${interaction.commandName}: ${error}.`);
