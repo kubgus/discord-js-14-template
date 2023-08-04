@@ -28,7 +28,7 @@ readDirectory("./src/functions").forEach(file => {
 });
 
 client.once("ready", () => {
-    console.log(`✅ ${client.user.tag} is ready!`);
+    console.log(`✅ ${client.user.username} is ready!`);
 
     client.handleCommands();
     client.handleEvents();

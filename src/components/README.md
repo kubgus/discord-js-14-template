@@ -22,7 +22,7 @@ const { EmbedBuilder } = require("discord.js");
 // This is useful when you want to reuse the same embed style in several commands.
 module.exports = (interaction) => new EmbedBuilder()
     .setTimestamp()
-    .setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({ dynamic: true }))
+    .setFooter(`Requested by ${interaction.user.username}`, interaction.user.displayAvatarURL({ dynamic: true }))
 ```
 ```js
 const { ActionRowBuilder, ButtonBuilder } = require("discord.js");

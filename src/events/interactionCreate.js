@@ -27,12 +27,12 @@ module.exports = {
             try {
                 const success = await slashCommand.execute(interaction, client);
 
-                if (!success) console.log(`📥 @${interaction.user.tag} tried to execute ${interaction.commandName}.`);
+                if (!success) console.log(`📥 @${interaction.user.username} tried to execute ${interaction.commandName}.`);
                 else {
                     timestamps.set(interaction.user.id, now);
                     setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
 
-                    console.log(`📥 @${interaction.user.tag} executed ${interaction.commandName}.`);
+                    console.log(`📥 @${interaction.user.username} executed ${interaction.commandName}.`);
                 }
             } catch (error) {
                 console.error(`🌋 Error occurred while executing command ${interaction.commandName}: ${error}.`);
@@ -42,10 +42,10 @@ module.exports = {
             } finally { return; }
         }
         else if (interaction.isButton()) { // Handles button clicks
-            console.log(`📥 @${interaction.user.tag} clicked ${interaction.customId}.`);
+            console.log(`📥 @${interaction.user.username} clicked ${interaction.customId}.`);
             return;
         }
 
-        console.log(`📥 @${interaction.user.tag} used an unknown interaction: ${interaction.id}.`);
+        console.log(`📥 @${interaction.user.username} used an unknown interaction: ${interaction.id}.`);
     }
 }
