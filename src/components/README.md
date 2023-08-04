@@ -20,11 +20,9 @@ const { EmbedBuilder } = require("discord.js");
 
 // The signed embed component returns an embed with a timestamp and footer.
 // This is useful when you want to reuse the same embed style in several commands.
-module.exports = async (interaction) => {
-    return new EmbedBuilder()
-        .setTimestamp()
-        .setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL());
-}
+module.exports = (interaction) => new EmbedBuilder()
+    .setTimestamp()
+    .setFooter(`Requested by ${interaction.user.tag}`, interaction.user.displayAvatarURL({ dynamic: true }))
 ```
 ```js
 const { ActionRowBuilder, ButtonBuilder } = require("discord.js");
@@ -42,8 +40,5 @@ const runButton = new ButtonBuilder()
 // This component returns an action row with options to fight or run.
 // This is useful when you want to reuse the same action row in several commands.
 // i.e. a monter fight encounter and a duel command.
-module.exports = async () => {
-    return new ActionRowBuilder()
-        .addComponents([fightButton, runButton]);
-}
+module.exports = async () => new ActionRowBuilder().addComponents([fightButton, runButton]);
 ```
