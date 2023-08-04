@@ -23,8 +23,6 @@ module.exports = {
                     { content: `You can use this command again <t:${Math.round(expirationTime / 1000)}:R>. 🕐`, ephemeral: true }
                 );
             }
-            timestamps.set(interaction.user.id, now);
-            setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
 
             try {
                 const success = await slashCommand.execute(interaction, client);
