@@ -39,6 +39,6 @@ const runButton = new ButtonBuilder()
 
 // This component returns an action row with options to fight or run.
 // This is useful when you want to reuse the same action row in several commands.
-// i.e. a monter fight encounter and a duel command.
+// i.e. a monster fight encounter and a duel command.
 module.exports = async () => new ActionRowBuilder().addComponents([fightButton, runButton]);
 ```
